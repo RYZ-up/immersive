@@ -1286,7 +1286,30 @@ export default function ImmersiveWebsite() {
           width: 100%;
           max-width: 1600px;
           margin: 5rem auto;
-          padding: 0 2rem;
+          padding: 4rem 2rem;
+          background: linear-gradient(135deg, rgba(20, 30, 48, 0.4), rgba(15, 25, 40, 0.5));
+          border: 1px solid rgba(100, 180, 255, 0.1);
+          border-radius: 2rem;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .about-container::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 20% 50%, rgba(0, 150, 255, 0.05), transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(150, 100, 255, 0.05), transparent 50%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .about-container > * {
+          position: relative;
+          z-index: 1;
         }
 
         .about-content-left {
