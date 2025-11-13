@@ -1,0 +1,12 @@
+git status
+git add .
+git commit -m "Description de vos changements"
+git push
+
+
+git add src/App.js
+git commit -m "Modifier App.js"
+git push
+git add .
+git commit -m "Ajouter nouvelle fonctionnalité X et corriger bug Y"
+git push
