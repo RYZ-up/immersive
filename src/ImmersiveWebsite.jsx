@@ -18,6 +18,7 @@ import FlowingMenu from './FlowingMenu';
 import Counter from './Counter';
 import PixelCard from './PixelCard';
 import StarBorder from './StarBorder';
+import SpotlightCard from './SpotlightCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -1881,7 +1882,7 @@ export default function ImmersiveWebsite() {
         .site-footer {
           background: #0a0a0a;
           border-top: 1px solid rgba(255, 255, 255, 0.1);
-          padding: 5rem 0 0;
+          padding: 5rem 0;
           text-align: center;
           margin-top: 10rem;
           margin-bottom: 0;
@@ -1908,48 +1909,126 @@ export default function ImmersiveWebsite() {
           padding: 0 2rem;
         }
 
-        .footer-stats {
-          display: flex;
-          justify-content: center;
-          gap: 4rem;
+        /* Spotlight CTA Card */
+        .footer-spotlight-cta {
+          background: linear-gradient(135deg, rgba(20, 20, 30, 0.8), rgba(15, 15, 25, 0.9)) !important;
+          border: 1px solid rgba(255, 215, 0, 0.2) !important;
+          margin-bottom: 4rem;
+        }
+
+        .footer-cta-content {
+          text-align: center;
+          position: relative;
+          z-index: 1;
+        }
+
+        .footer-cta-text {
+          font-size: 2.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          background: linear-gradient(135deg, rgba(255, 215, 0, 0.8), rgba(255, 255, 255, 0.6));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .footer-cta-subtitle {
+          font-size: 1.1rem;
+          color: rgba(255, 255, 255, 0.7);
+          margin-bottom: 2rem;
+          line-height: 1.6;
+        }
+
+        .footer-cta-button {
+          display: inline-block;
+        }
+
+        /* Stats Grid */
+        .footer-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
           margin: 3rem 0;
+        }
+
+        .footer-stat-card {
+          background: linear-gradient(135deg, rgba(20, 20, 30, 0.7), rgba(15, 15, 25, 0.8)) !important;
+          border: 1px solid rgba(100, 200, 255, 0.1) !important;
+          min-height: 180px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .footer-stat {
           text-align: center;
+          width: 100%;
         }
 
         .footer-stat-value {
-          font-size: 3rem;
-          font-weight: 700;
+          font-size: 2.5rem;
+          font-weight: 900;
           margin-bottom: 0.5rem;
+          background: linear-gradient(135deg, rgba(0, 229, 255, 0.8), rgba(138, 43, 226, 0.6));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
 
         .footer-stat-label {
-          font-size: 1rem;
+          font-size: 0.95rem;
           color: rgba(255, 255, 255, 0.6);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
-        .footer-links {
+        /* Links Grid */
+        .footer-links-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.5rem;
+          margin: 3rem 0;
+        }
+
+        .footer-link-card {
+          background: linear-gradient(135deg, rgba(20, 20, 30, 0.6), rgba(15, 15, 25, 0.7)) !important;
+          border: 1px solid rgba(100, 100, 100, 0.1) !important;
+          min-height: 130px;
           display: flex;
+          align-items: center;
           justify-content: center;
-          gap: 2rem;
-          margin: 2rem 0;
         }
 
-        .footer-link {
-          color: rgba(255, 255, 255, 0.6);
+        .footer-link-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
           text-decoration: none;
-          transition: color 0.3s ease;
           background: none;
           border: none;
-          padding: 0;
           cursor: pointer;
-          font: inherit;
+          color: rgba(255, 255, 255, 0.8);
+          transition: all 0.3s ease;
+          padding: 1rem;
+          width: 100%;
+          font-size: inherit;
         }
 
-        .footer-link:hover {
+        .footer-link-content:hover {
           color: rgba(255, 255, 255, 1);
+          transform: translateY(-2px);
+        }
+
+        .footer-link-icon {
+          font-size: 1.8rem;
+        }
+
+        .footer-link-text {
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-size: 0.95rem;
         }
 
         .footer-copyright {
@@ -1995,8 +2074,13 @@ export default function ImmersiveWebsite() {
             font-size: 1.8rem;
           }
 
-          .footer-cta-section {
-            padding: 4rem 1.5rem;
+          .footer-stats-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .footer-links-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
           }
         }
 
@@ -2523,14 +2607,16 @@ export default function ImmersiveWebsite() {
 
       <footer className="site-footer">
         <div className="footer-content">
+          {/* CTA Section avec Spotlight */}
           <AnimatedSection>
-            <div className="footer-cta-section">
+            <SpotlightCard className="footer-spotlight-cta" spotlightColor="rgba(255, 215, 0, 0.3)">
               <div className="footer-cta-content">
                 <h2 className="footer-cta-text">
                   <ScrollReveal>
-                    Prêt à transformer votre vision en réalité ? Contactez-moi pour commencer votre projet immersif et créer ensemble quelque chose d'exceptionnel.
+                    Prêt à transformer votre vision en réalité ?
                   </ScrollReveal>
                 </h2>
+                <p className="footer-cta-subtitle">Contactez-moi pour commencer votre projet immersif et créer ensemble quelque chose d'exceptionnel.</p>
                 <div className="footer-cta-button">
                   <StarBorder
                     as="button"
@@ -2542,65 +2628,99 @@ export default function ImmersiveWebsite() {
                   </StarBorder>
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
           </AnimatedSection>
 
+          {/* Stats Section */}
           <AnimatedSection delay={0.2}>
-            <div className="footer-stats">
-              <div className="footer-stat">
-                <div className="footer-stat-value">
-                  <Counter
-                    value={1247}
-                    places={[1000, 100, 10, 1]}
-                    fontSize={50}
-                    padding={5}
-                    gap={10}
-                    textColor="white"
-                    fontWeight={900}
-                  />
+            <div className="footer-stats-grid">
+              <SpotlightCard className="footer-stat-card" spotlightColor="rgba(0, 229, 255, 0.2)">
+                <div className="footer-stat">
+                  <div className="footer-stat-value">
+                    <Counter
+                      value={1247}
+                      places={[1000, 100, 10, 1]}
+                      fontSize={45}
+                      padding={5}
+                      gap={8}
+                      textColor="white"
+                      fontWeight={900}
+                    />
+                  </div>
+                  <div className="footer-stat-label"><ShinyText text={t.footer.views} speed={6} /></div>
                 </div>
-                <div className="footer-stat-label"><ShinyText text={t.footer.views} speed={6} /></div>
-              </div>
-              <div className="footer-stat">
-                <div className="footer-stat-value">
-                  <Counter
-                    value={24}
-                    places={[10, 1]}
-                    fontSize={50}
-                    padding={5}
-                    gap={10}
-                    textColor="white"
-                    fontWeight={900}
-                  />
+              </SpotlightCard>
+
+              <SpotlightCard className="footer-stat-card" spotlightColor="rgba(138, 43, 226, 0.2)">
+                <div className="footer-stat">
+                  <div className="footer-stat-value">
+                    <Counter
+                      value={24}
+                      places={[10, 1]}
+                      fontSize={45}
+                      padding={5}
+                      gap={8}
+                      textColor="white"
+                      fontWeight={900}
+                    />
+                  </div>
+                  <div className="footer-stat-label"><ShinyText text="Projets" speed={6} /></div>
                 </div>
-                <div className="footer-stat-label"><ShinyText text="Projets" speed={6} /></div>
-              </div>
-              <div className="footer-stat">
-                <div className="footer-stat-value">
-                  <Counter
-                    value={5}
-                    places={[1]}
-                    fontSize={50}
-                    padding={5}
-                    gap={10}
-                    textColor="white"
-                    fontWeight={900}
-                  />
+              </SpotlightCard>
+
+              <SpotlightCard className="footer-stat-card" spotlightColor="rgba(0, 255, 127, 0.2)">
+                <div className="footer-stat">
+                  <div className="footer-stat-value">
+                    <Counter
+                      value={5}
+                      places={[1]}
+                      fontSize={45}
+                      padding={5}
+                      gap={8}
+                      textColor="white"
+                      fontWeight={900}
+                    />
+                  </div>
+                  <div className="footer-stat-label"><ShinyText text="Années d'expérience" speed={6} /></div>
                 </div>
-                <div className="footer-stat-label"><ShinyText text="Années d'expérience" speed={6} /></div>
-              </div>
+              </SpotlightCard>
             </div>
           </AnimatedSection>
 
+          {/* Links Section */}
           <AnimatedSection delay={0.4}>
-            <div className="footer-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer-link"><ShinyText text="GitHub" speed={5} /></a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link"><ShinyText text="LinkedIn" speed={5} /></a>
-              <a href="mailto:contact@example.com" className="footer-link"><ShinyText text="Email" speed={5} /></a>
-              <button type="button" className="footer-link" onClick={() => window.open('/cv.pdf', '_blank')}><ShinyText text="CV" speed={5} /></button>
+            <div className="footer-links-grid">
+              <SpotlightCard className="footer-link-card" spotlightColor="rgba(255, 165, 0, 0.2)">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer-link-content">
+                  <span className="footer-link-icon">💻</span>
+                  <span className="footer-link-text"><ShinyText text="GitHub" speed={5} /></span>
+                </a>
+              </SpotlightCard>
+
+              <SpotlightCard className="footer-link-card" spotlightColor="rgba(30, 144, 255, 0.2)">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link-content">
+                  <span className="footer-link-icon">💼</span>
+                  <span className="footer-link-text"><ShinyText text="LinkedIn" speed={5} /></span>
+                </a>
+              </SpotlightCard>
+
+              <SpotlightCard className="footer-link-card" spotlightColor="rgba(220, 20, 60, 0.2)">
+                <a href="mailto:contact@example.com" className="footer-link-content">
+                  <span className="footer-link-icon">📧</span>
+                  <span className="footer-link-text"><ShinyText text="Email" speed={5} /></span>
+                </a>
+              </SpotlightCard>
+
+              <SpotlightCard className="footer-link-card" spotlightColor="rgba(255, 215, 0, 0.2)">
+                <button type="button" className="footer-link-content" onClick={() => window.open('/cv.pdf', '_blank')}>
+                  <span className="footer-link-icon">📄</span>
+                  <span className="footer-link-text"><ShinyText text="CV" speed={5} /></span>
+                </button>
+              </SpotlightCard>
             </div>
           </AnimatedSection>
 
+          {/* Copyright Section */}
           <AnimatedSection delay={0.6}>
             <div className="footer-copyright">
               <p><ShinyText text={t.footer.rights} speed={6} /></p>
