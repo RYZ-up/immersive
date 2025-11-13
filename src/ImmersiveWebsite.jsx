@@ -2657,16 +2657,6 @@ export default function ImmersiveWebsite() {
                     Prêt à transformer votre vision en réalité ?
                   </ScrollReveal>
                 </h2>
-                <div className="footer-cta-button">
-                  <StarBorder
-                    as="button"
-                    color="rgba(255, 215, 0, 0.8)"
-                    speed="5s"
-                    onClick={() => setIsContactOpen(true)}
-                  >
-                    <ShinyText text="Commencer Maintenant" speed={3} />
-                  </StarBorder>
-                </div>
               </div>
             </div>
           </AnimatedSection>
