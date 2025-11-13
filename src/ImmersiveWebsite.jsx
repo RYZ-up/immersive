@@ -442,10 +442,18 @@ export default function ImmersiveWebsite() {
 
   const scrollToSection = (sectionId) => {
     setCurrentSection(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Petit délai pour s'assurer que l'état est mis à jour
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // Utiliser un scroll plus robuste
+        const yOffset = -100; // Offset pour le header fixe
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        console.warn(`Element with id "${sectionId}" not found`);
+      }
+    }, 100);
   };
 
   const toggleLanguage = () => {
@@ -1287,8 +1295,8 @@ export default function ImmersiveWebsite() {
           max-width: 1600px;
           margin: 5rem auto;
           padding: 4rem 2rem;
-          background: linear-gradient(135deg, rgba(20, 30, 48, 0.4), rgba(15, 25, 40, 0.5));
-          border: 1px solid rgba(100, 180, 255, 0.1);
+          background: linear-gradient(135deg, rgba(50, 50, 50, 0.6), rgba(40, 40, 40, 0.7));
+          border: 1px solid rgba(100, 100, 100, 0.2);
           border-radius: 2rem;
           position: relative;
           overflow: hidden;
@@ -1301,8 +1309,8 @@ export default function ImmersiveWebsite() {
           left: 0;
           right: 0;
           bottom: 0;
-          background: radial-gradient(circle at 20% 50%, rgba(0, 150, 255, 0.05), transparent 50%),
-                      radial-gradient(circle at 80% 80%, rgba(150, 100, 255, 0.05), transparent 50%);
+          background: radial-gradient(circle at 20% 50%, rgba(100, 100, 100, 0.1), transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(80, 80, 80, 0.1), transparent 50%);
           pointer-events: none;
           z-index: 0;
         }
@@ -1939,6 +1947,16 @@ export default function ImmersiveWebsite() {
           margin-bottom: 4rem;
         }
 
+        .footer-cta-simple {
+          text-align: center;
+          position: relative;
+          z-index: 1;
+          margin-bottom: 4rem;
+          background: transparent;
+          border: none;
+          padding: 2rem;
+        }
+
         .footer-cta-content {
           text-align: center;
           position: relative;
@@ -1948,7 +1966,7 @@ export default function ImmersiveWebsite() {
         .footer-cta-text {
           font-size: 2.5rem;
           font-weight: 700;
-          margin-bottom: 1rem;
+          margin-bottom: 2rem;
           background: linear-gradient(135deg, rgba(255, 215, 0, 0.8), rgba(255, 255, 255, 0.6));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -2632,14 +2650,13 @@ export default function ImmersiveWebsite() {
         <div className="footer-content">
           {/* CTA Section avec Spotlight */}
           <AnimatedSection>
-            <SpotlightCard className="footer-spotlight-cta" spotlightColor="rgba(255, 215, 0, 0.3)">
+            <div className="footer-cta-simple">
               <div className="footer-cta-content">
                 <h2 className="footer-cta-text">
                   <ScrollReveal>
                     Prêt à transformer votre vision en réalité ?
                   </ScrollReveal>
                 </h2>
-                <p className="footer-cta-subtitle">Contactez-moi pour commencer votre projet immersif et créer ensemble quelque chose d'exceptionnel.</p>
                 <div className="footer-cta-button">
                   <StarBorder
                     as="button"
@@ -2651,7 +2668,7 @@ export default function ImmersiveWebsite() {
                   </StarBorder>
                 </div>
               </div>
-            </SpotlightCard>
+            </div>
           </AnimatedSection>
 
           {/* Stats Section */}
