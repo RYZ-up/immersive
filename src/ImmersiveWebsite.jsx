@@ -1941,6 +1941,11 @@ export default function ImmersiveWebsite() {
           color: rgba(255, 255, 255, 0.6);
           text-decoration: none;
           transition: color 0.3s ease;
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          font: inherit;
         }
 
         .footer-link:hover {
@@ -2592,7 +2597,7 @@ export default function ImmersiveWebsite() {
               <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer-link"><ShinyText text="GitHub" speed={5} /></a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link"><ShinyText text="LinkedIn" speed={5} /></a>
               <a href="mailto:contact@example.com" className="footer-link"><ShinyText text="Email" speed={5} /></a>
-              <a href="#" className="footer-link"><ShinyText text="CV" speed={5} /></a>
+              <button type="button" className="footer-link" onClick={() => window.open('/cv.pdf', '_blank')}><ShinyText text="CV" speed={5} /></button>
             </div>
           </AnimatedSection>
 
