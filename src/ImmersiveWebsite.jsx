@@ -438,19 +438,19 @@ export default function ImmersiveWebsite() {
   }, []);
 
   const scrollToSection = (sectionId) => {
-    setCurrentSection(sectionId);
-    // Petit délai pour s'assurer que l'état est mis à jour
-    setTimeout(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        // Utiliser un scroll plus robuste
-        const yOffset = -100; // Offset pour le header fixe
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      } else {
-        console.warn(`Element with id "${sectionId}" not found`);
-      }
-    }, 100);
+    // Ne pas mettre à jour l'état pendant le scroll
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const yOffset = -100;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      // Mettre à jour après le scroll
+      setTimeout(() => {
+        setCurrentSection(sectionId);
+      }, 600); // Après l'animation de scroll (1.4s)
+    } else {
+      console.warn(`Element with id "${sectionId}" not found`);
+    }
   };
 
   const toggleLanguage = () => {
@@ -492,7 +492,8 @@ export default function ImmersiveWebsite() {
       },
       footer: {
         rights: '© 2025 Tous droits réservés',
-        views: 'Visiteurs'
+        views: 'Visiteurs',
+        cta: 'Prêt à transformer votre vision en réalité ?'
       }
     },
     en: {
@@ -529,7 +530,8 @@ export default function ImmersiveWebsite() {
       },
       footer: {
         rights: '© 2025 All rights reserved',
-        views: 'Visitors'
+        views: 'Visitors',
+        cta: 'Ready to transform your vision into reality ?'
       }
     }
   };
@@ -1343,13 +1345,16 @@ export default function ImmersiveWebsite() {
         }
 
         .about-3d-section {
-          position: sticky;
-          top: 100px;
+          position: relative;
           width: 100%;
           height: 450px;
           display: flex;
           align-items: center;
           justify-content: center;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 20px;
+          overflow: hidden;
         }
 
         .about-stats {
@@ -1884,16 +1889,8 @@ export default function ImmersiveWebsite() {
           background-clip: text;
           margin-bottom: 2.5rem;
           letter-spacing: -0.02em;
-          animation: textGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes textGlow {
-          0%, 100% {
-            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
-          }
-          50% {
-            text-shadow: 0 8px 30px rgba(212, 175, 55, 0.35);
-          }
+          filter: none;
+          text-shadow: none;
         }
 
         .footer-cta-button {
@@ -2656,9 +2653,7 @@ export default function ImmersiveWebsite() {
             <div className="footer-cta-simple">
               <div className="footer-cta-content">
                 <h2 className="footer-cta-text">
-                  <ScrollReveal>
-                    Prêt à transformer votre vision en réalité ?
-                  </ScrollReveal>
+                  {t.footer.cta}
                 </h2>
               </div>
             </div>
