@@ -335,7 +335,6 @@ export default function ImmersiveWebsite() {
   const [currentSection, setCurrentSection] = useState('home');
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [scrollY, setScrollY] = useState(0);
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [language, setLanguage] = useState('fr');
@@ -343,7 +342,6 @@ export default function ImmersiveWebsite() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY;
-      setScrollY(scrollPos);
       setIsScrolledPastHero(scrollPos > window.innerHeight * 0.3);
       setShowScrollTop(scrollPos > window.innerHeight * 1.5);
     };
@@ -797,21 +795,6 @@ export default function ImmersiveWebsite() {
       { name: 'AWS', level: 65, icon: '☁️', color: 'rgba(255, 153, 0, 0.2)' }
     ]
   };
-
-  const education = [
-    {
-      year: '2023-2025',
-      degree: 'BTS SNIR',
-      school: 'École Supérieure de Technologies',
-      description: 'Systèmes Numériques option Informatique et Réseaux'
-    },
-    {
-      year: '2021-2023',
-      degree: 'Bac Pro SN',
-      school: 'Lycée Technique',
-      description: 'Systèmes Numériques option RISC (Réseaux Informatiques et Systèmes Communicants)'
-    }
-  ];
 
   const educationMenuItems = [
     {

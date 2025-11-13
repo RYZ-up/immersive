@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import GlareHover from './GlareHover';
 import StarBorder from './StarBorder';
 import './ProjectGrid.css';
 
