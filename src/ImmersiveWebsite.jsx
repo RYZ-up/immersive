@@ -427,10 +427,8 @@ export default function ImmersiveWebsite() {
         if (prev >= 100) {
           clearInterval(interval);
           setLoading(false);
-          // Ajouter un délai de 0.3s avant la transition
-          setTimeout(() => {
-            setShowTransition(true);
-          }, 300);
+          // Lancer la transition immédiatement après le chargement
+          setShowTransition(true);
           return 100;
         }
         return prev + 1;
@@ -1149,9 +1147,15 @@ export default function ImmersiveWebsite() {
 
         .video-overlay h1 {
           font-size: clamp(3rem, 8vw, 6rem);
-          font-weight: 700;
+          font-weight: 900;
+          font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+          letter-spacing: -0.02em;
           margin-bottom: 1rem;
           text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(200, 200, 200, 0.85));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
 
         /* RotatingText avec fond */
