@@ -1,0 +1,65 @@
+.decrypt-text {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: linear-gradient(120deg, #ffffff 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+.decrypt-text.decrypting {
+  animation: glitch 0.3s infinite;
+}
+
+.decrypt-text.decrypted {
+  animation: none;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow:
+      0.05em 0 0 rgba(255, 0, 0, 0.5),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.5),
+      -0.025em 0.05em 0 rgba(0, 0, 255, 0.5);
+  }
+  14% {
+    text-shadow:
+      0.05em 0 0 rgba(255, 0, 0, 0.5),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.5),
+      -0.025em 0.05em 0 rgba(0, 0, 255, 0.5);
+  }
+  15% {
+    text-shadow:
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.5),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.5),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.5);
+  }
+  49% {
+    text-shadow:
+      -0.05em -0.025em 0 rgba(255, 0, 0, 0.5),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.5),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.5);
+  }
+  50% {
+    text-shadow:
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.5),
+      0.05em 0 0 rgba(0, 255, 0, 0.5),
+      0 -0.05em 0 rgba(0, 0, 255, 0.5);
+  }
+  99% {
+    text-shadow:
+      0.025em 0.05em 0 rgba(255, 0, 0, 0.5),
+      0.05em 0 0 rgba(0, 255, 0, 0.5),
+      0 -0.05em 0 rgba(0, 0, 255, 0.5);
+  }
+  100% {
+    text-shadow:
+      -0.025em 0 0 rgba(255, 0, 0, 0.5),
+      -0.025em -0.025em 0 rgba(0, 255, 0, 0.5),
+      -0.025em -0.05em 0 rgba(0, 0, 255, 0.5);
+  }
+}
