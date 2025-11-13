@@ -17,7 +17,6 @@ import { techLogos } from './techLogos';
 import FlowingMenu from './FlowingMenu';
 import Counter from './Counter';
 import PixelCard from './PixelCard';
-import StarBorder from './StarBorder';
 import SpotlightCard from './SpotlightCard';
 
 gsap.registerPlugin(ScrollTrigger);
